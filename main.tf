@@ -1,31 +1,20 @@
 terraform {
-  required_version = ">= 1.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
   }
-
-  cloud {
-    organization = "sumedhhashi"
-
-    workspaces {
-      name = "acme-prod-web"
-    }
-  }
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-0c55b159cbfafe1f0" # Replace with a valid AMI for your region
-  instance_type = "t2.micro"
-
+  ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 LTS
+  instance_type = var.instance_type
   tags = {
-    Name = "Terraform-Web-Instance"
-    Env  = "Production"
+    Name = "ACME-WebServer"
   }
 }
