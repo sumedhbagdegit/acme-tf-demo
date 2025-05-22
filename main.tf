@@ -13,7 +13,8 @@ provider "aws" {
 
 resource "aws_instance" "web" {
   ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 LTS
-  instance_type = "m5.large" # Expensive instance  tags = {
+  instance_type = var.instance_type
+  tags = {
     Name = "ACME-WebServer"
   }
 }
